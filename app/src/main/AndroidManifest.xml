@@ -43,7 +43,7 @@
                 android:resource="@xml/scores_widget_provider_info"/>
         </receiver>
 
-        <service android:name=".service.myFetchService" />
+        <service android:name=".service.FootballScoresIntentService" />
     </application>
 
 </manifest>
