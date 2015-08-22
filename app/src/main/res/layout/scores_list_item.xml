@@ -23,14 +23,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:contentDescription="@string/team_image_desc" />
+                android:contentDescription="@string/team_1_image_desc" />
 
             <TextView
                 android:id="@+id/home_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:contentDescription="@string/team_name_desc"
+                android:contentDescription="@string/team_1_name_desc"
                 android:gravity="center"
                 android:text="@string/test_text"
                 android:textSize="@dimen/TeamNames" />
@@ -76,14 +76,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:contentDescription="@string/team_image_desc" />
+                android:contentDescription="@string/team_2_image_desc" />
 
             <TextView
                 android:id="@+id/away_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:contentDescription="@string/team_name_desc"
+                android:contentDescription="@string/team_2_name_desc"
                 android:gravity="center"
                 android:text="@string/test_text"
                 android:textSize="@dimen/TeamNames" />
