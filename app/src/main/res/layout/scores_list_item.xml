@@ -22,13 +22,15 @@
                 android:id="@+id/home_crest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:contentDescription="@string/team_image_desc" />
 
             <TextView
                 android:id="@+id/home_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:contentDescription="@string/team_name_desc"
                 android:gravity="center"
                 android:text="@string/test_text"
                 android:textSize="@dimen/TeamNames" />
@@ -46,6 +48,7 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:contentDescription="@string/match_score_desc"
                 android:gravity="center"
                 android:text="@string/test_text"
                 android:textSize="@dimen/Score" />
@@ -56,6 +59,7 @@
                 android:layout_height="0dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:contentDescription="@string/game_clock_desc"
                 android:gravity="center"
                 android:text="@string/test_text" />
 
@@ -71,13 +75,15 @@
                 android:id="@+id/away_crest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:contentDescription="@string/team_image_desc" />
 
             <TextView
                 android:id="@+id/away_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:contentDescription="@string/team_name_desc"
                 android:gravity="center"
                 android:text="@string/test_text"
                 android:textSize="@dimen/TeamNames" />
@@ -87,7 +93,7 @@
     <FrameLayout
         android:id="@+id/details_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></FrameLayout>
+        android:layout_height="wrap_content" />
 </LinearLayout>
 
 
