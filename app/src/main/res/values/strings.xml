@@ -39,16 +39,15 @@
     <string name="league_text_view_desc">League</string>
     <string name="match_day_desc">Match Day</string>
     <string name="share_match_desc">Share Match</string>
-
     <string name="about_app_desc">About application</string>
-
     <string name="team_1_image_desc">Team One Image</string>
     <string name="team_1_name_desc">Team One Name</string>
-
     <string name="team_2_image_desc">Team Two Image</string>
     <string name="team_2_name_desc">Team Two Name</string>
-
     <string name="match_score_desc">Score</string>
     <string name="game_clock_desc">Game Time</string>
+
+    <!--api key-->
+    <string name="api_key">ENTER_API_KEY</string>
 
 </resources>
