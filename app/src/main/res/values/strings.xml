@@ -39,4 +39,6 @@
     <string name="league_text_view_desc">League</string>
     <string name="match_day_desc">Match Day</string>
     <string name="share_match_desc">Share Match</string>
+
+    <string name="about_app_desc">About application</string>
 </resources>
