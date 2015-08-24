@@ -1,15 +1,11 @@
 package barqsoft.footballscores.service;
 
 import android.app.IntentService;
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.RemoteViews;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,9 +22,7 @@ import java.util.Date;
 import java.util.TimeZone;
 import java.util.Vector;
 
-import barqsoft.footballscores.DatabaseContract;
-import barqsoft.footballscores.widget.FootballScoresWidgetProvider;
-import barqsoft.footballscores.MainActivity;
+import barqsoft.footballscores.data.DatabaseContract;
 import barqsoft.footballscores.R;
 
 /**
