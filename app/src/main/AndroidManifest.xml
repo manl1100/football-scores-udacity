@@ -35,7 +35,7 @@
                 android:value="barqsoft.footballscores.MainActivity" />
         </activity>
 
-        <receiver android:name=".FootballScoresWidgetProvider">
+        <receiver android:name=".widget.FootballScoresWidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.appwidget.action.ACTION_DATA_UPDATED"/>
