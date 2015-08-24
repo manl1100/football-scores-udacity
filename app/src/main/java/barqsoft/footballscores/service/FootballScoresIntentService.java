@@ -1,11 +1,15 @@
 package barqsoft.footballscores.service;
 
 import android.app.IntentService;
+import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -23,6 +27,8 @@ import java.util.TimeZone;
 import java.util.Vector;
 
 import barqsoft.footballscores.DatabaseContract;
+import barqsoft.footballscores.widget.FootballScoresWidgetProvider;
+import barqsoft.footballscores.MainActivity;
 import barqsoft.footballscores.R;
 
 /**
@@ -60,6 +66,7 @@ public class FootballScoresIntentService extends IntentService
         String JSON_data = null;
         //Opening Connection
         try {
+            //TODO: check for connection issues
             URL fetch = new URL(fetch_build.toString());
             m_connection = (HttpURLConnection) fetch.openConnection();
             m_connection.setRequestMethod("GET");
@@ -135,11 +142,17 @@ public class FootballScoresIntentService extends IntentService
     private void processJSONdata (String JSONdata,Context mContext, boolean isReal)
     {
         //JSON data
-        final String SERIE_A = "357";
-        final String PREMIER_LEGAUE = "354";
-        final String CHAMPIONS_LEAGUE = "362";
-        final String PRIMERA_DIVISION = "358";
-        final String BUNDESLIGA = "351";
+        final String BUNDESLIGA1 = "394";
+        final String BUNDESLIGA2 = "395";
+        final String LIGUE1 = "396";
+        final String LIGUE2 = "397";
+        final String PREMIER_LEAGUE = "398";
+        final String PRIMERA_DIVISION = "399";
+        final String SEGUNDA_DIVISION = "400";
+        final String SERIE_A = "401";
+        final String PRIMERA_LIGA = "402";
+        final String Bundesliga3 = "403";
+        final String EREDIVISIE = "404";
         final String SEASON_LINK = "http://api.football-data.org/alpha/soccerseasons/";
         final String MATCH_LINK = "http://api.football-data.org/alpha/fixtures/";
         final String FIXTURES = "fixtures";
@@ -178,11 +191,11 @@ public class FootballScoresIntentService extends IntentService
                 League = match_data.getJSONObject(LINKS).getJSONObject(SOCCER_SEASON).
                         getString("href");
                 League = League.replace(SEASON_LINK,"");
-                if(     League.equals(PREMIER_LEGAUE)      ||
+                if (League.equals(PREMIER_LEAGUE)      ||
                         League.equals(SERIE_A)             ||
-                        League.equals(CHAMPIONS_LEAGUE)    ||
-                        League.equals(BUNDESLIGA)          ||
-                        League.equals(PRIMERA_DIVISION)     )
+                        League.equals(BUNDESLIGA1)         ||
+                        League.equals(BUNDESLIGA2)         ||
+                        League.equals(PRIMERA_DIVISION))
                 {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
