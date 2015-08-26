@@ -3,7 +3,7 @@ package barqsoft.footballscores.widget;
 import android.app.IntentService;
 import android.content.Intent;
 
-import barqsoft.footballscores.data.DatabaseContract;
+import barqsoft.footballscores.data.FootballScoresContract;
 
 /**
  * Created by Manuel Sanchez on 8/17/15
@@ -11,15 +11,15 @@ import barqsoft.footballscores.data.DatabaseContract;
 public class FootballScoresIntentService extends IntentService {
 
     private static final String[] FOOTBALL_SCORES_COLUMNS = {
-            DatabaseContract.scores_table.MATCH_ID,
-            DatabaseContract.scores_table.DATE_COL,
-            DatabaseContract.scores_table.TIME_COL,
-            DatabaseContract.scores_table.HOME_COL,
-            DatabaseContract.scores_table.AWAY_COL,
-            DatabaseContract.scores_table.HOME_GOALS_COL,
-            DatabaseContract.scores_table.AWAY_GOALS_COL,
-            DatabaseContract.scores_table.LEAGUE_COL,
-            DatabaseContract.scores_table.MATCH_DAY
+            FootballScoresContract.scores_table.MATCH_ID,
+            FootballScoresContract.scores_table.DATE_COL,
+            FootballScoresContract.scores_table.TIME_COL,
+            FootballScoresContract.scores_table.HOME_COL,
+            FootballScoresContract.scores_table.AWAY_COL,
+            FootballScoresContract.scores_table.HOME_GOALS_COL,
+            FootballScoresContract.scores_table.AWAY_GOALS_COL,
+            FootballScoresContract.scores_table.LEAGUE_COL,
+            FootballScoresContract.scores_table.MATCH_DAY
     };
 
     private static final int MATCH_ID = 0;
