@@ -2,13 +2,16 @@ package barqsoft.footballscores.widget;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.net.Uri;
+
+import java.net.URI;
 
 import barqsoft.footballscores.data.FootballScoresContract;
 
 /**
  * Created by Manuel Sanchez on 8/17/15
  */
-public class FootballScoresIntentService extends IntentService {
+public class FootballScoresWidgetIntentService extends IntentService {
 
     private static final String[] FOOTBALL_SCORES_COLUMNS = {
             FootballScoresContract.scores_table.MATCH_ID,
@@ -33,12 +36,15 @@ public class FootballScoresIntentService extends IntentService {
     private static final int MATCH_DAY =8;
 
 
-    public FootballScoresIntentService(String name) {
-        super(name);
+    public FootballScoresWidgetIntentService() {
+        super("FootballScoresWidgetIntentService");
     }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-
+//        Uri uri = FootballScoresContract.scores_table.buildScoreWithDate();
+        Uri uri = FootballScoresContract.scores_table.buildScoreWithLeague();
+//        Uri uri = FootballScoresContract.scores_table.buildScoreWithId();
+        getContentResolver().query(uri, FOOTBALL_SCORES_COLUMNS, null, null, null);
     }
 }
