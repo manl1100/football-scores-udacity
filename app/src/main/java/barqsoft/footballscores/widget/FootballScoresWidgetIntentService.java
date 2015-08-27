@@ -2,9 +2,12 @@ package barqsoft.footballscores.widget;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import barqsoft.footballscores.data.FootballScoresContract;
 
@@ -42,9 +45,14 @@ public class FootballScoresWidgetIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-//        Uri uri = FootballScoresContract.scores_table.buildScoreWithDate();
-        Uri uri = FootballScoresContract.scores_table.buildScoreWithLeague();
-//        Uri uri = FootballScoresContract.scores_table.buildScoreWithId();
-        getContentResolver().query(uri, FOOTBALL_SCORES_COLUMNS, null, null, null);
+        Uri uri = FootballScoresContract.scores_table.buildScoreWithDate();
+        Cursor cursor = getContentResolver().query(uri,
+                FOOTBALL_SCORES_COLUMNS,
+                null,
+                new String[] {new SimpleDateFormat("yyyy-MM-dd").format(new Date())},
+                FootballScoresContract.scores_table.HOME_GOALS_COL + " ASC");
+        if (cursor.moveToFirst()) {
+            System.out.println();
+        }
     }
 }
