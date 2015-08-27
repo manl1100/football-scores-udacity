@@ -45,6 +45,7 @@
         </receiver>
 
         <service android:name=".service.FootballScoresIntentService" />
+        <service android:name=".widget.FootballScoresWidgetIntentService" />
     </application>
 
 </manifest>

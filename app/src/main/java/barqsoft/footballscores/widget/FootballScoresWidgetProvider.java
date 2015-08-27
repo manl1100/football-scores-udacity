@@ -18,36 +18,41 @@ import barqsoft.footballscores.service.FootballScoresIntentService;
  */
 public class FootballScoresWidgetProvider extends AppWidgetProvider {
 
-    public static final String ACTION_DATA_UPDATED = "action_data_updated";
+//    public static final String ACTION_DATA_UPDATED = "action_data_updated";
+    public static final String ACTION_DATA_UPDATED = "android.appwidget.action.APPWIDGET_UPDATE";
 
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
 
         if (ACTION_DATA_UPDATED.equals(intent.getAction())) {
-            context.startService(new Intent(context, FootballScoresIntentService.class));
+            context.startService(new Intent(context, FootballScoresWidgetIntentService.class));
         }
     }
 
     @Override
     public void onAppWidgetOptionsChanged(Context context, AppWidgetManager appWidgetManager, int appWidgetId, Bundle newOptions) {
-        context.startService(new Intent(context, FootballScoresIntentService.class));
+        super.onAppWidgetOptionsChanged(context, appWidgetManager, appWidgetId, newOptions);
+
+        context.startService(new Intent(context, FootballScoresWidgetIntentService.class));
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        context.startService(new Intent(context, FootballScoresIntentService.class));
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
 
-//        // update widgets
-//        for (int id : appWidgetIds) {
-//            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_football_score);
-//
-//            // set pending intent
-//            Intent intent = new Intent(context, MainActivity.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-//            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
-//
-//            appWidgetManager.updateAppWidget(id, views);
-//        }
+        context.startService(new Intent(context, FootballScoresWidgetIntentService.class));
+
+        // update widgets
+        for (int id : appWidgetIds) {
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_football_score);
+
+            // set pending intent
+            Intent intent = new Intent(context, MainActivity.class);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
+
+            appWidgetManager.updateAppWidget(id, views);
+        }
     }
 }
