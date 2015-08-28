@@ -24,5 +24,5 @@
         android:gravity="center_horizontal"
         android:textSize="25sp"
         android:layout_gravity="center_vertical"
-        android:text="No games"/>
+        android:text="@string/no_matches"/>
 </FrameLayout>
