@@ -49,7 +49,7 @@ public class FootballScoresWidgetIntentService extends IntentService {
         Cursor cursor = getContentResolver().query(uri,
                 FOOTBALL_SCORES_COLUMNS,
                 null,
-                new String[]{new SimpleDateFormat("yyyy-MM-dd").format(new Date())},
+                new String[]{new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))},
                 FootballScoresContract.scores_table.HOME_GOALS_COL + " ASC");
         if (cursor.moveToFirst()) {
             System.out.println();
