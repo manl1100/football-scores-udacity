@@ -30,13 +30,13 @@ public class FootballScoresWidgetIntentService extends IntentService {
 
     private static final int MATCH_ID = 0;
     private static final int DATE_COL = 1;
-    private static final int TIME_COL =2;
-    private static final int HOME_COL =3;
-    private static final int AWAY_COL =4;
+    private static final int TIME_COL = 2;
+    private static final int HOME_COL = 3;
+    private static final int AWAY_COL = 4;
     private static final int HOME_GOALS_COL = 5;
     private static final int AWAY_GOALS_COL = 6;
     private static final int LEAGUE_COL = 7;
-    private static final int MATCH_DAY =8;
+    private static final int MATCH_DAY = 8;
 
 
     public FootballScoresWidgetIntentService() {
@@ -49,7 +49,7 @@ public class FootballScoresWidgetIntentService extends IntentService {
         Cursor cursor = getContentResolver().query(uri,
                 FOOTBALL_SCORES_COLUMNS,
                 null,
-                new String[] {new SimpleDateFormat("yyyy-MM-dd").format(new Date())},
+                new String[]{new SimpleDateFormat("yyyy-MM-dd").format(new Date())},
                 FootballScoresContract.scores_table.HOME_GOALS_COL + " ASC");
         if (cursor.moveToFirst()) {
             System.out.println();

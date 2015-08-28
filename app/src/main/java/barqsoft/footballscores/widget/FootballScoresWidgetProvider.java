@@ -18,7 +18,7 @@ import barqsoft.footballscores.service.FootballScoresIntentService;
  */
 public class FootballScoresWidgetProvider extends AppWidgetProvider {
 
-//    public static final String ACTION_DATA_UPDATED = "action_data_updated";
+    //    public static final String ACTION_DATA_UPDATED = "action_data_updated";
     public static final String ACTION_DATA_UPDATED = "android.appwidget.action.APPWIDGET_UPDATE";
 
     @Override
