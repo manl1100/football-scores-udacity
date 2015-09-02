@@ -87,6 +87,9 @@ public class FootballScoresIntentService extends IntentService {
             }
             JSON_data = buffer.toString();
         } catch (Exception e) {
+            /**
+             * Notify user of connection issue
+             */
             Log.e(LOG_TAG, "Exception here" + e.getMessage());
         } finally {
             if (m_connection != null) {
@@ -118,6 +121,9 @@ public class FootballScoresIntentService extends IntentService {
                 Log.d(LOG_TAG, "Could not connect to server.");
             }
         } catch (Exception e) {
+            /**
+             * Should notify user of failure
+             */
             Log.e(LOG_TAG, e.getMessage());
         }
     }
