@@ -131,6 +131,7 @@ public class FootballScoresIntentService extends IntentService {
     private void processJSONdata(String JSONdata, Context mContext, boolean isReal) {
         //JSON data
         final String BUNDESLIGA1 = "394";
+        final String DEBUG = "357";
         final String BUNDESLIGA2 = "395";
         final String LIGUE1 = "396";
         final String LIGUE2 = "397";
@@ -182,7 +183,13 @@ public class FootballScoresIntentService extends IntentService {
                         League.equals(SERIE_A) ||
                         League.equals(BUNDESLIGA1) ||
                         League.equals(BUNDESLIGA2) ||
-                        League.equals(PRIMERA_DIVISION)) {
+                        League.equals(PRIMERA_DIVISION) ||
+                        League.equals(LIGUE1) ||
+                        League.equals(LIGUE2) ||
+                        League.equals(SEGUNDA_DIVISION) ||
+                        League.equals(PRIMERA_LIGA) ||
+                        League.equals(Bundesliga3) ||
+                        League.equals(EREDIVISIE) || League.equals(DEBUG)) {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
                     match_id = match_id.replace(MATCH_LINK, "");
