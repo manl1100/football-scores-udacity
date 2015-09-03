@@ -28,7 +28,6 @@ public class ScoresCollectionWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        super.onUpdate(context, appWidgetManager, appWidgetIds);
 
         // update widgets
         for (int id : appWidgetIds) {
@@ -36,9 +35,9 @@ public class ScoresCollectionWidgetProvider extends AppWidgetProvider {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_football_scores_collection);
 
             // set pending intent
-            Intent launchIntent = new Intent(context, MainActivity.class);
-            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
-            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
+//            Intent launchIntent = new Intent(context, MainActivity.class);
+//            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
+//            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
 
 
             Intent intent = new Intent(context, ScoresWidgetRemoteViewsService.class);
@@ -55,10 +54,13 @@ public class ScoresCollectionWidgetProvider extends AppWidgetProvider {
             // The empty view is displayed when the collection has no items.
             // It should be in the same layout used to instantiate the RemoteViews
             // object above.
-            views.setEmptyView(R.id.widget_scores_list_view, R.id.empty_view);
+            views.setEmptyView(R.id.widget_scores_list_view, R.id.widget_empty_view);
 
             appWidgetManager.updateAppWidget(id, views);
         }
+
+        super.onUpdate(context, appWidgetManager, appWidgetIds);
+
     }
 
 }

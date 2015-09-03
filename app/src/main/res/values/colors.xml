@@ -3,6 +3,7 @@
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="lightGrey">#BBDEDFDE</color>
     <color name="blue01">#0099CC</color>
     <color name="blue02">#079DD0</color>
     <color name="blue03">#0FA1D3</color>
@@ -48,6 +49,7 @@
     <color name="green13">#E2F0B6</color>
     <color name="green14">#F0F8DB</color>
 
+    <color name="deepOrange">#FF5722</color>
     <color name="orange01">#FF8A00</color>
     <color name="orange02">#FF9105</color>
     <color name="orange03">#FF9909</color>
