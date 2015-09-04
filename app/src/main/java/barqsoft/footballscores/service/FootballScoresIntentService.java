@@ -189,7 +189,7 @@ public class FootballScoresIntentService extends IntentService {
                         League.equals(SEGUNDA_DIVISION) ||
                         League.equals(PRIMERA_LIGA) ||
                         League.equals(Bundesliga3) ||
-                        League.equals(EREDIVISIE) || League.equals(DEBUG)) {
+                        League.equals(EREDIVISIE)) {
                     match_id = match_data.getJSONObject(LINKS).getJSONObject(SELF).
                             getString("href");
                     match_id = match_id.replace(MATCH_LINK, "");
