@@ -37,6 +37,7 @@ public class FootballScoresIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        // Get data for next two days and previous two days respectively
         getData("n2");
         getData("p2");
 
