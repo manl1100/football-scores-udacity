@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,37 +21,39 @@ import barqsoft.footballscores.service.FootballScoresIntentService;
  * A placeholder fragment containing a simple view.
  */
 public class MainScreenFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+
     public ScoresAdapter mAdapter;
     public static final int SCORES_LOADER = 0;
-    private String[] fragmentdate = new String[1];
-    private int last_selected_item = -1;
+    private String[] fragmentDate = new String[1];
 
     public MainScreenFragment() {
     }
 
-    private void update_scores() {
-        Intent service_start = new Intent(getActivity(), FootballScoresIntentService.class);
-        getActivity().startService(service_start);
+    private void updateScores() {
+        Intent serviceStart = new Intent(getActivity(), FootballScoresIntentService.class);
+        getActivity().startService(serviceStart);
     }
 
     public void setFragmentDate(String date) {
-        fragmentdate[0] = date;
+        fragmentDate[0] = date;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             final Bundle savedInstanceState) {
-        update_scores();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, final Bundle savedInstanceState) {
+        updateScores();
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         View emptyView = rootView.findViewById(R.id.empty_view);
 
-        final ListView score_list = (ListView) rootView.findViewById(R.id.scores_list);
-        score_list.setEmptyView(emptyView);
         mAdapter = new ScoresAdapter(getActivity(), null, 0);
-        score_list.setAdapter(mAdapter);
+        final ListView scoreList = (ListView) rootView.findViewById(R.id.scores_list);
+        scoreList.setEmptyView(emptyView);
+        scoreList.setAdapter(mAdapter);
+
         getLoaderManager().initLoader(SCORES_LOADER, null, this);
+
         mAdapter.detail_match_id = MainActivity.selectedMatchId;
-        score_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+        scoreList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ViewHolder selected = (ViewHolder) view.getTag();
@@ -65,30 +68,16 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(getActivity(), FootballScoresContract.ScoresTable.buildScoreWithDate(),
-                null, null, fragmentdate, null);
+                null, null, fragmentDate, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        //Log.v(FetchScoreTask.LOG_TAG,"loader finished");
-        //cursor.moveToFirst();
-        /*
-        while (!cursor.isAfterLast())
-        {
-            Log.v(FetchScoreTask.LOG_TAG,cursor.getString(1));
-            cursor.moveToNext();
-        }
-        */
-
-        int i = 0;
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            i++;
             cursor.moveToNext();
         }
-        //Log.v(FetchScoreTask.LOG_TAG,"Loader query: " + String.valueOf(i));
         mAdapter.swapCursor(cursor);
-        //mAdapter.notifyDataSetChanged();
     }
 
     @Override
