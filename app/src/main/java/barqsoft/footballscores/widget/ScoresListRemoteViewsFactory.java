@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
@@ -106,6 +107,13 @@ public class ScoresListRemoteViewsFactory implements RemoteViewsService.RemoteVi
         views.setTextViewText(R.id.home_team, homeTeam);
         views.setTextViewText(R.id.away_team, awayTeam);
         views.setTextViewText(R.id.match_score, Utility.getScores(homeGoals, awayGoals));
+
+        // Set FillInIntent to be used in the PendingIntentTemplate
+        Bundle bundle = new Bundle();
+        bundle.putInt(ScoresCollectionWidgetProvider.EXTRA_ITEM, data.getInt(MATCH_ID));
+        Intent fillInIntent = new Intent();
+        fillInIntent.putExtras(bundle);
+        views.setOnClickFillInIntent(R.id.widget, fillInIntent);
 
         return views;
     }

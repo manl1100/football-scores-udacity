@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import barqsoft.footballscores.widget.ScoresCollectionWidgetProvider;
+
 public class MainActivity extends ActionBarActivity {
 
     public static int selected_match_id;
@@ -24,6 +26,12 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, my_main)
                     .commit();
         }
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            selected_match_id = intent.getIntExtra(ScoresCollectionWidgetProvider.EXTRA_ITEM, 0);
+        }
+
     }
 
 

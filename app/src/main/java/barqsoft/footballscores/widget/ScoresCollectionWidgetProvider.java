@@ -17,6 +17,8 @@ import barqsoft.footballscores.R;
  */
 public class ScoresCollectionWidgetProvider extends AppWidgetProvider {
 
+    public static final String EXTRA_ITEM = "position";
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -34,12 +36,6 @@ public class ScoresCollectionWidgetProvider extends AppWidgetProvider {
             // Instantiate the RemoteViews object for the app widget layout.
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_football_scores_collection);
 
-            // set pending intent
-//            Intent launchIntent = new Intent(context, MainActivity.class);
-//            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchIntent, 0);
-//            views.setOnClickPendingIntent(R.id.widget, pendingIntent);
-
-
             Intent intent = new Intent(context, ScoresWidgetRemoteViewsService.class);
             // Add the app widget ID to the intent extras.
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, id);
@@ -55,6 +51,14 @@ public class ScoresCollectionWidgetProvider extends AppWidgetProvider {
             // It should be in the same layout used to instantiate the RemoteViews
             // object above.
             views.setEmptyView(R.id.widget_scores_list_view, R.id.widget_empty_view);
+
+
+            // Set pending intent template to launch app when match is selected
+            Intent launchIntent = new Intent(context, MainActivity.class);
+            launchIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchIntent,
+                    PendingIntent.FLAG_UPDATE_CURRENT);
+            views.setPendingIntentTemplate(R.id.widget_scores_list_view, pendingIntent);
 
             appWidgetManager.updateAppWidget(id, views);
         }
