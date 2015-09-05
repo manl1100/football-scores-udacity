@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -236,15 +235,15 @@ public class FootballScoresIntentService extends IntentService {
                     matchDay = match_data.getString(MATCH_DAY);
 
                     ContentValues matchValues = new ContentValues();
-                    matchValues.put(FootballScoresContract.scores_table.MATCH_ID, matchId);
-                    matchValues.put(FootballScoresContract.scores_table.DATE_COL, mDate);
-                    matchValues.put(FootballScoresContract.scores_table.TIME_COL, mTime);
-                    matchValues.put(FootballScoresContract.scores_table.HOME_COL, home);
-                    matchValues.put(FootballScoresContract.scores_table.AWAY_COL, away);
-                    matchValues.put(FootballScoresContract.scores_table.HOME_GOALS_COL, homeGoals);
-                    matchValues.put(FootballScoresContract.scores_table.AWAY_GOALS_COL, awayGoals);
-                    matchValues.put(FootballScoresContract.scores_table.LEAGUE_COL, league);
-                    matchValues.put(FootballScoresContract.scores_table.MATCH_DAY, matchDay);
+                    matchValues.put(FootballScoresContract.ScoresTable.MATCH_ID, matchId);
+                    matchValues.put(FootballScoresContract.ScoresTable.DATE_COL, mDate);
+                    matchValues.put(FootballScoresContract.ScoresTable.TIME_COL, mTime);
+                    matchValues.put(FootballScoresContract.ScoresTable.HOME_COL, home);
+                    matchValues.put(FootballScoresContract.ScoresTable.AWAY_COL, away);
+                    matchValues.put(FootballScoresContract.ScoresTable.HOME_GOALS_COL, homeGoals);
+                    matchValues.put(FootballScoresContract.ScoresTable.AWAY_GOALS_COL, awayGoals);
+                    matchValues.put(FootballScoresContract.ScoresTable.LEAGUE_COL, league);
+                    matchValues.put(FootballScoresContract.ScoresTable.MATCH_DAY, matchDay);
 
                     Log.v(LOG_TAG,matchId);
                     Log.v(LOG_TAG,mDate);

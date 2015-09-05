@@ -23,9 +23,9 @@ public class ScoresProvider extends ContentProvider {
 
     private static final SQLiteQueryBuilder ScoreQuery = new SQLiteQueryBuilder();
 
-    private static final String SCORES_BY_LEAGUE = FootballScoresContract.scores_table.LEAGUE_COL + " = ?";
-    private static final String SCORES_BY_DATE = FootballScoresContract.scores_table.DATE_COL + " LIKE ?";
-    private static final String SCORES_BY_ID = FootballScoresContract.scores_table.MATCH_ID + " = ?";
+    private static final String SCORES_BY_LEAGUE = FootballScoresContract.ScoresTable.LEAGUE_COL + " = ?";
+    private static final String SCORES_BY_DATE = FootballScoresContract.ScoresTable.DATE_COL + " LIKE ?";
+    private static final String SCORES_BY_ID = FootballScoresContract.ScoresTable.MATCH_ID + " = ?";
 
 
     static UriMatcher buildUriMatcher() {
@@ -43,11 +43,11 @@ public class ScoresProvider extends ContentProvider {
         {
             if (link.contentEquals(FootballScoresContract.BASE_CONTENT_URI.toString())) {
                 return MATCHES;
-            } else if (link.contentEquals(FootballScoresContract.scores_table.buildScoreWithDate().toString())) {
+            } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithDate().toString())) {
                 return MATCHES_WITH_DATE;
-            } else if (link.contentEquals(FootballScoresContract.scores_table.buildScoreWithId().toString())) {
+            } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithId().toString())) {
                 return MATCHES_WITH_ID;
-            } else if (link.contentEquals(FootballScoresContract.scores_table.buildScoreWithLeague().toString())) {
+            } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithLeague().toString())) {
                 return MATCHES_WITH_LEAGUE;
             }
         }
@@ -70,13 +70,13 @@ public class ScoresProvider extends ContentProvider {
         final int match = muriMatcher.match(uri);
         switch (match) {
             case MATCHES:
-                return FootballScoresContract.scores_table.CONTENT_TYPE;
+                return FootballScoresContract.ScoresTable.CONTENT_TYPE;
             case MATCHES_WITH_LEAGUE:
-                return FootballScoresContract.scores_table.CONTENT_TYPE;
+                return FootballScoresContract.ScoresTable.CONTENT_TYPE;
             case MATCHES_WITH_ID:
-                return FootballScoresContract.scores_table.CONTENT_ITEM_TYPE;
+                return FootballScoresContract.ScoresTable.CONTENT_ITEM_TYPE;
             case MATCHES_WITH_DATE:
-                return FootballScoresContract.scores_table.CONTENT_TYPE;
+                return FootballScoresContract.ScoresTable.CONTENT_TYPE;
             default:
                 throw new UnsupportedOperationException("Unknown uri :" + uri);
         }

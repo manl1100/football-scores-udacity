@@ -23,15 +23,15 @@ import barqsoft.footballscores.data.FootballScoresContract;
 public class ScoresListRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     private static final String[] FOOTBALL_SCORES_COLUMNS = {
-            FootballScoresContract.scores_table.MATCH_ID,
-            FootballScoresContract.scores_table.DATE_COL,
-            FootballScoresContract.scores_table.TIME_COL,
-            FootballScoresContract.scores_table.HOME_COL,
-            FootballScoresContract.scores_table.AWAY_COL,
-            FootballScoresContract.scores_table.HOME_GOALS_COL,
-            FootballScoresContract.scores_table.AWAY_GOALS_COL,
-            FootballScoresContract.scores_table.LEAGUE_COL,
-            FootballScoresContract.scores_table.MATCH_DAY
+            FootballScoresContract.ScoresTable.MATCH_ID,
+            FootballScoresContract.ScoresTable.DATE_COL,
+            FootballScoresContract.ScoresTable.TIME_COL,
+            FootballScoresContract.ScoresTable.HOME_COL,
+            FootballScoresContract.ScoresTable.AWAY_COL,
+            FootballScoresContract.ScoresTable.HOME_GOALS_COL,
+            FootballScoresContract.ScoresTable.AWAY_GOALS_COL,
+            FootballScoresContract.ScoresTable.LEAGUE_COL,
+            FootballScoresContract.ScoresTable.MATCH_DAY
     };
 
     private static final int MATCH_ID = 0;
@@ -63,12 +63,12 @@ public class ScoresListRemoteViewsFactory implements RemoteViewsService.RemoteVi
         }
 
         final long identityToken = Binder.clearCallingIdentity();
-        Uri uri = FootballScoresContract.scores_table.buildScoreWithDate();
+        Uri uri = FootballScoresContract.ScoresTable.buildScoreWithDate();
         data = mContext.getContentResolver().query(uri,
                 FOOTBALL_SCORES_COLUMNS,
                 null,
                 new String[]{new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()))},
-                FootballScoresContract.scores_table.HOME_GOALS_COL + " ASC");
+                FootballScoresContract.ScoresTable.HOME_GOALS_COL + " ASC");
 
         Binder.restoreCallingIdentity(identityToken);
     }
