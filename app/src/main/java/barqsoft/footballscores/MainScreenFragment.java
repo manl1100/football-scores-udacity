@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,14 +50,14 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
 
         getLoaderManager().initLoader(SCORES_LOADER, null, this);
 
-        mAdapter.detail_match_id = MainActivity.selectedMatchId;
+        mAdapter.detailMatchId = MainActivity.selectedMatchId;
 
         scoreList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ViewHolder selected = (ViewHolder) view.getTag();
-                mAdapter.detail_match_id = selected.match_id;
-                MainActivity.selectedMatchId = (int) selected.match_id;
+                mAdapter.detailMatchId = selected.matchId;
+                MainActivity.selectedMatchId = (int) selected.matchId;
                 mAdapter.notifyDataSetChanged();
             }
         });

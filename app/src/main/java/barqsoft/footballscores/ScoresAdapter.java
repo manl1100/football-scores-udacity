@@ -24,7 +24,7 @@ public class ScoresAdapter extends CursorAdapter {
     public static final int COL_MATCHDAY = 9;
     public static final int COL_ID = 8;
     public static final int COL_MATCHTIME = 2;
-    public double detail_match_id = 0;
+    public double detailMatchId = 0;
 
     private String FOOTBALL_SCORES_HASHTAG = "#Football_Scores";
 
@@ -43,13 +43,13 @@ public class ScoresAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
         final ViewHolder mHolder = (ViewHolder) view.getTag();
-        mHolder.home_name.setText(cursor.getString(COL_HOME));
-        mHolder.away_name.setText(cursor.getString(COL_AWAY));
+        mHolder.homeTeamName.setText(cursor.getString(COL_HOME));
+        mHolder.awayTeamName.setText(cursor.getString(COL_AWAY));
         mHolder.date.setText(cursor.getString(COL_MATCHTIME));
         mHolder.score.setText(Utility.getScores(cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS)));
-        mHolder.match_id = cursor.getDouble(COL_ID);
-        mHolder.home_crest.setImageResource(Utility.getTeamCrestByTeamName(cursor.getString(COL_HOME)));
-        mHolder.away_crest.setImageResource(Utility.getTeamCrestByTeamName(cursor.getString(COL_AWAY)
+        mHolder.matchId = cursor.getDouble(COL_ID);
+        mHolder.homeCrest.setImageResource(Utility.getTeamCrestByTeamName(cursor.getString(COL_HOME)));
+        mHolder.awayCrest.setImageResource(Utility.getTeamCrestByTeamName(cursor.getString(COL_AWAY)
         ));
 
         LayoutInflater vi = (LayoutInflater) context.getApplicationContext()
@@ -57,7 +57,7 @@ public class ScoresAdapter extends CursorAdapter {
         View v = vi.inflate(R.layout.detail_fragment, null);
         ViewGroup container = (ViewGroup) view.findViewById(R.id.details_fragment_container);
 
-        if (mHolder.match_id == detail_match_id) {
+        if (mHolder.matchId == detailMatchId) {
 
             container.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT));
@@ -70,8 +70,8 @@ public class ScoresAdapter extends CursorAdapter {
                 @Override
                 public void onClick(View v) {
                     //add Share Action
-                    context.startActivity(createShareForecastIntent(mHolder.home_name.getText() + " "
-                            + mHolder.score.getText() + " " + mHolder.away_name.getText() + " "));
+                    context.startActivity(createShareForecastIntent(mHolder.homeTeamName.getText() + " "
+                            + mHolder.score.getText() + " " + mHolder.awayTeamName.getText() + " "));
                 }
             });
         } else {
