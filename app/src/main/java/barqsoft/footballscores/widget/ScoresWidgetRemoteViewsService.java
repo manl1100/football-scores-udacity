@@ -10,6 +10,6 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        return new ScoresListRemoteViewsFactory(this, intent);
+        return new ScoresListRemoteViewsFactory(this);
     }
 }

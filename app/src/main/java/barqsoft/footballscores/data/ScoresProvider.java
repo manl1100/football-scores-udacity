@@ -40,16 +40,14 @@ public class ScoresProvider extends ContentProvider {
 
     private int match_uri(Uri uri) {
         String link = uri.toString();
-        {
-            if (link.contentEquals(FootballScoresContract.BASE_CONTENT_URI.toString())) {
-                return MATCHES;
-            } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithDate().toString())) {
-                return MATCHES_WITH_DATE;
-            } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithId().toString())) {
-                return MATCHES_WITH_ID;
-            } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithLeague().toString())) {
-                return MATCHES_WITH_LEAGUE;
-            }
+        if (link.contentEquals(FootballScoresContract.BASE_CONTENT_URI.toString())) {
+            return MATCHES;
+        } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithDate().toString())) {
+            return MATCHES_WITH_DATE;
+        } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithId().toString())) {
+            return MATCHES_WITH_ID;
+        } else if (link.contentEquals(FootballScoresContract.ScoresTable.buildScoreWithLeague().toString())) {
+            return MATCHES_WITH_LEAGUE;
         }
         return -1;
     }
@@ -85,11 +83,7 @@ public class ScoresProvider extends ContentProvider {
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor retCursor;
-        //Log.v(FetchScoreTask.LOG_TAG,uri.getPathSegments().toString());
         int match = match_uri(uri);
-        //Log.v(FetchScoreTask.LOG_TAG,SCORES_BY_LEAGUE);
-        //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[0]);
-        //Log.v(FetchScoreTask.LOG_TAG,String.valueOf(match));
         switch (match) {
             case MATCHES:
                 retCursor = mOpenHelper.getReadableDatabase().query(
@@ -97,8 +91,6 @@ public class ScoresProvider extends ContentProvider {
                         projection, null, null, null, null, sortOrder);
                 break;
             case MATCHES_WITH_DATE:
-                //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[1]);
-                //Log.v(FetchScoreTask.LOG_TAG,selectionArgs[2]);
                 retCursor = mOpenHelper.getReadableDatabase().query(
                         FootballScoresContract.SCORES_TABLE,
                         projection, SCORES_BY_DATE, selectionArgs, null, null, sortOrder);
@@ -128,18 +120,16 @@ public class ScoresProvider extends ContentProvider {
     @Override
     public int bulkInsert(Uri uri, ContentValues[] values) {
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
-        //db.delete(FootballScoresContract.SCORES_TABLE,null,null);
-        //Log.v(FetchScoreTask.LOG_TAG,String.valueOf(muriMatcher.match(uri)));
         switch (match_uri(uri)) {
             case MATCHES:
                 db.beginTransaction();
-                int returncount = 0;
+                int returnCount = 0;
                 try {
                     for (ContentValues value : values) {
-                        long _id = db.insertWithOnConflict(FootballScoresContract.SCORES_TABLE, null, value,
+                        long id = db.insertWithOnConflict(FootballScoresContract.SCORES_TABLE, null, value,
                                 SQLiteDatabase.CONFLICT_REPLACE);
-                        if (_id != -1) {
-                            returncount++;
+                        if (id != -1) {
+                            returnCount++;
                         }
                     }
                     db.setTransactionSuccessful();
@@ -147,7 +137,7 @@ public class ScoresProvider extends ContentProvider {
                     db.endTransaction();
                 }
                 getContext().getContentResolver().notifyChange(uri, null);
-                return returncount;
+                return returnCount;
             default:
                 return super.bulkInsert(uri, values);
         }
